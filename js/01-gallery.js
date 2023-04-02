@@ -26,10 +26,26 @@ const onSmallImgClick = (e) => {
   if (!e.target.classList.contains("gallery__image")) {
     return;
   }
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <img src="${e.target.dataset.source}">
-`);
+`,
+    {
+      onShow: (instance) => {
+        document.addEventListener("keydown", onEscKeyPress);
+      },
+      onClose: (instance) => {
+        document.removeEventListener("keydown", onEscKeyPress);
+      },
+    }
+  );
 
   instance.show();
+
+  function onEscKeyPress(e) {
+    if (e.code === "Escape") {
+      instance.close();
+    }
+  }
 };
 gallery.addEventListener("click", onSmallImgClick);
