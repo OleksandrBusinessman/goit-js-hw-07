@@ -16,17 +16,8 @@ const gallery = document.querySelector(".gallery");
   gallery.insertAdjacentHTML("afterbegin", smallImgGallery);
 })();
 
-const onSmallImgClick = (e) => {
-  e.preventDefault();
-  if (!e.target.classList.contains("gallery__image")) {
-    return;
-  }
-
-  const lightbox = new SimpleLightbox(".gallery .gallery__link", {
-    captionsData: "alt",
-    captionPosition: "bottom",
-    captionDelay: "250",
-  });
-};
-
-gallery.addEventListener("click", onSmallImgClick);
+const lightbox = new SimpleLightbox(".gallery .gallery__link", {
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: "250",
+});
